@@ -14,7 +14,7 @@ stages:
   jobs: 
   - job: Job1
     steps:
-      - bash: echo $(Build.BuildId)
+      - bash: echo BuildNumber$(Build.BuildId)
       - script: echo Hello job1 $(MyVariable)
         displayName: 'Run a one-line script'
 
