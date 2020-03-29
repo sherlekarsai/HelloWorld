@@ -56,7 +56,7 @@ stages:
         displayName: 'Run a multi-line script'
 - stage: ProdDeploy
   dependsOn: 
-  - Build
+  - DevDeploy
   - QADeploy
   jobs: 
   - job: ProdDeployJob
