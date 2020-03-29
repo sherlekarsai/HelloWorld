@@ -21,7 +21,6 @@ stages:
           echo Add other tasks to build, test, and deploy your project.
           echo See https://aka.ms/yaml
         displayName: 'Run a multi-line script'
-
   - job : Job2
     steps:
       - script: echo Hello job2
@@ -32,6 +31,7 @@ stages:
           echo See https://aka.ms/yaml
         displayName: 'Run a multi-line script'
 - stage: DevDeploy
+  dependsOn: Build
   jobs: 
   - job: DevDeployJob1
     steps:
@@ -43,10 +43,25 @@ stages:
           echo See https://aka.ms/yaml
         displayName: 'Run a multi-line script'
 - stage: QADeploy
+  dependsOn: Build
   jobs: 
   - job: QADeployJob1
     steps:
       - script: echo Hello QADeploy1
+        displayName: 'Run a one-line script'
+
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+- stage: ProdDeploy
+  dependsOn: 
+  - Build
+  - QADeploy
+  jobs: 
+  - job: ProdDeployJob
+    steps:
+      - script: echo Hello ProdDeployJob
         displayName: 'Run a one-line script'
 
       - script: |
