@@ -9,24 +9,49 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-- job : Job1
-  steps:
-  - script: echo Hello job1
-    displayName: 'Run a one-line script'
+stages:
+- stage: Build
+  jobs: 
+  - job: Job1
+    steps:
+      - script: echo Hello job1
+        displayName: 'Run a one-line script'
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
 
-- job : Job2
-  steps:
-  - script: echo Hello job2
-    displayName: 'Run a one-line script'
+  - job : Job2
+    steps:
+      - script: echo Hello job2
+        displayName: 'Run a one-line script'
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+- stage: DevDeploy
+  jobs: 
+  - job: DevDeployJob1
+    steps:
+      - script: echo Hello DevDeployJob1
+        displayName: 'Run a one-line script'
+
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+- stage: QADeploy
+  jobs: 
+  - job: QADeployJob1
+    steps:
+      - script: echo Hello QADeploy1
+        displayName: 'Run a one-line script'
+
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+        displayName: 'Run a multi-line script'
+
 
