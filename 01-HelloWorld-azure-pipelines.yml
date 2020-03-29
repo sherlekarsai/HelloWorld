@@ -15,13 +15,18 @@ stages:
   - job: Job1
     steps:
       - bash: echo BuildNumber$(Build.BuildId)
+      - bash: echo sai1
+      - bash: ls -R $(Build.ArtifactStagingDirectory)
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
           Contents: |
             **/*.yaml
             **/*.tf
-          TargetFolder: 'Build.ArtifactStagingDirectory'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - bash: echo sai2
+      - bash: ls -R $(Build.ArtifactStagingDirectory)
+      - bash: echo sai3
       - script: echo Hello job1 $(MyVariable)
         displayName: 'Run a one-line script'
 
