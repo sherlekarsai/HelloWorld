@@ -14,7 +14,7 @@ stages:
   jobs: 
   - job: Job1
     steps:
-      - script: echo Hello job1
+      - script: echo Hello job1 $(MyVariable)
         displayName: 'Run a one-line script'
 
       - script: |
@@ -43,11 +43,13 @@ stages:
           echo See https://aka.ms/yaml
         displayName: 'Run a multi-line script'
 - stage: QADeploy
+  variables:
+    QAVariable: QA
   dependsOn: Build
   jobs: 
   - job: QADeployJob1
     steps:
-      - script: echo Hello QADeploy1
+      - script: echo Hello QADeploy1 $(QAVariable)
         displayName: 'Run a one-line script'
 
       - script: |
